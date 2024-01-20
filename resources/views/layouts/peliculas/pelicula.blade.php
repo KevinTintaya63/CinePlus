@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minions</title>
+    <title>{{ $pelicula_det->titulo }}</title>
     
 
     <style>
@@ -64,7 +64,7 @@
             font-size: 16px;
             min-height: 40.62em;
             color: #fff;
-            background: linear-gradient(rgba(254, 185, 14) 0%, rgba(0, 0, 0, .50) 40%), url('https://occ.a.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABYyFsb1psitdoJQdfbOk_ANA8N5Lu-Hb0lwcIdNKMascA8h47yE4PHt_0nSJQ2uVpKVyPYEfbftMKTs6ZPqCe5nroCbzSfRbdVqn.jpg?r=d07');
+            background: linear-gradient(rgba(243, 166, 33 ) 0%, rgba(0, 0, 0, .50) 40%), url('{{ asset('storage/images/' . basename($pelicula_det->img_first)) }}');
             background-position: center center;
             background-size: cover;
             margin-bottom: 3.12em;
@@ -104,7 +104,7 @@
         }
 
         .pelicula-principal .boton:hover {
-            background: #FEB90E;
+            background: #F3A621;
             color: #fff;
         }
 
@@ -263,44 +263,21 @@
 </head>
 
 <body>
-    <header style="display: flex; align-items: center">
-        <div class="contenedor">
-            <h2 class="logotipo">CINE +</h2>
-            <nav style="display: flex">
-                <a href="{{ route('inicio') }}" class="activo">Inicio</a>
-                <a href="{{ route('inicio') }}">Películas</a>
-                <a href="{{ route('contacto') }}">Contacto</a>
-                <div style="display: flex;">
-                    <a>Bienvenido @auth {{ Auth::user()->name }} @endauth
-                    </a>
-                    <a href="{{ route('logout') }}"><button type="button" class="boton-salir">Salir</button></a>
-                </div>
-            </nav>
-        </div>
-    </header>
+    @include('layouts.peliculas.menu')
     <section id="top">
         <main>
             <div class="pelicula-principal">
                 <div class="contenedor">
-                    <h3 class="titulo">Minions</h3>
-                    <p class="descripcion">
-                    Los Minions son pequeñas criaturas amarillas que han existido desde el principio de los tiempos, evolucionando de 
-                    organismos unicelulares que existen solo para servir al villano más despreciable de la historia, desafortunadamente 
-                    ellos no tienen tanta inteligencia y mataron accidentalmente a sus amos. Después de lanzar un Tiranosaurio a un volcán, 
-                    hacer que un oso cavernario comiera a su líder cavernícola, aplastar a un Faraón con una pirámide, exponer al Conde Drácula 
-                    a la luz del sol y disparar accidentalmente un cañón a Napoleón, los Minions se aíslan del mundo y comienzan una nueva vida 
-                    en una cueva en Siberia. Después de muchos años, los Minions se deprimen por la falta de alguien para servir. Para recuperar
-                    su dignidad y sentido de propósito, Kevin, un audaz Minion, decide buscar un nuevo amo y pide ayuda. Stuart, un rebelde Minion,
-                    y Bob, un joven e inexperto pero entusiasta Minion, son reclutados.
-                    </p>
-                    <a href="https://www.youtube.com/watch?v=tOCczL-LYHo" alt="Mythrill" target="_blank"><button
+                    <h3 class="titulo">{{ $pelicula_det->titulo }}</h3>
+                    <p class="descripcion">{{ $pelicula_det->descripcion }} </p>
+                    <a href="{{ $pelicula_det->url_first }}" alt="Mythrill" target="_blank"><button
                             role="button" class="boton">Trailer</button></a>
-                    <a href="https://www.hbomax.com/pe/es" alt="Mythrill" target="_blank"><button role="button"
+                    <a href="{{ $pelicula_det->url_second }}" alt="Mythrill" target="_blank"><button role="button"
                             class="boton">HBO Max</button></a>
-                    <a href="https://www.disneyplus.com/es-419/login" alt="Mythrill" target="_blank"><button
+                    <a href="{{ $pelicula_det->url_third }}" alt="Mythrill" target="_blank"><button
                             role="button" class="boton">Disney Plus</button></a>
 
-                    <a href="https://www.imdb.com/title/tt5113044/?ref_=nv_sr_srsg_5_tt_5_nm_3_q_mini" alt="Mythrill" target="_blank"><button
+                    <a href="{{ $pelicula_det->url_four }}" alt="Mythrill" target="_blank"><button
                             role="button" class="boton">Más información</button></a>
                 </div>
             </div>
@@ -308,7 +285,18 @@
     </section>
     <div style="display: flex; justify-content: center; flex-direction: row; align-items: center">
         <h3 style="display: flex ;color: white; justify-content: center; font-size:120px;margin-right: 20px">Calificacion:</h3>
-        <h3 style="color: rgb(255, 247, 0); font-size:100px;display: flex; justify-content: center">★★☆☆☆</h3>
+        <h3 style="color: rgb(255, 247, 0); font-size:100px;display: flex; justify-content: center">
+            @php
+                $calificacion = $pelicula_det->calificacion; // Obtener la calificación de la película
+            @endphp
+            @for ($i = 1; $i <= 5; $i++)
+                @if ($i <= $calificacion)
+                    <span>★</span>
+                @else
+                    <span>☆</span>
+                @endif
+            @endfor</h3>
+        </h3>
     </div>
 </body>
 

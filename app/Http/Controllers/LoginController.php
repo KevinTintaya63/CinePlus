@@ -21,7 +21,7 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('privada'));
+        return redirect(route('inicio.pelicula'));
         
     }
     public function login(Request $request)
@@ -35,7 +35,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials,$remember)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('privada'));
+            return redirect()->intended(route('inicio.pelicula'));
         }else{
             return redirect('/');
         }

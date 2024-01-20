@@ -1,21 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <title>Contacto</title>
-<header style="display: flex; align-items: center">
-    <div class="contenedor">
-        <h2 class="logotipo">CINE +</h2>
-        <nav style="display: flex">
-            <a href="{{ route('inicio') }}" class="activo">Inicio</a>
-            <a href="#peliculas">Películas</a>
-            <a href="#contacto">Contacto</a>
-            <div style="display: flex;">
-                <a>Bienvenido Pepito </a>
-                <a href="http://127.0.0.1:8000/logout"><button type="button" class="boton-salir">Salir</button></a>
-            </div>
-        </nav>
-    </div>
 
-</header>
+@include('layouts.peliculas.menu')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-2iSJWnI8YvYmsMgOMCQ25fzPZpn9h44ntiOKO/nc0b/d+HUt0xdwDWjIJmfwzR1xfFWmZi96cCFdrgllUGGtPg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -316,4 +303,4 @@
 </body>
 
 </html>
-{{ }}
+
