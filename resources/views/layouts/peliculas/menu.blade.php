@@ -4,7 +4,6 @@
         <nav style="display: flex">
             <a href="{{ route('inicio.pelicula') }}" class="activo">Inicio</a>
             <a href="#peliculas">Películas</a>
-            <a href="{{ route('contacto') }}">Contacto</a>
             <div style="display: flex;">
                 <a>Bienvenido @auth {{ Auth::user()->name }} @endauth
                 </a>
